@@ -32,24 +32,7 @@ public class AI_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * movespeed * Time.deltaTime);
-        RaycastHit2D groundinfo = Physics2D.Raycast(grounddetection.position, Vector2.down, raycastdistance);
-        
-
-            if (groundinfo.collider == false)
-            {
-                if (turningright == true)
-                {
-                    transform.eulerAngles = new Vector3(0, -180, 0);
-                    turningright = false;
-                }
-                else
-                {
-                    transform.eulerAngles = new Vector3(0, 0, 0);
-                    turningright = true;
-                }
-
-            }
+        patrol();
 
         
         
@@ -80,6 +63,27 @@ public class AI_1 : MonoBehaviour
         if (collision.gameObject.tag == "Player") {
 
             kill.SetActive(false);
+        }
+    }
+    void patrol()
+    {
+        transform.Translate(Vector2.right * movespeed * Time.deltaTime);
+        RaycastHit2D groundinfo = Physics2D.Raycast(grounddetection.position, Vector2.down, raycastdistance);
+
+
+        if (groundinfo.collider == false)
+        {
+            if (turningright == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                turningright = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                turningright = true;
+            }
+
         }
     }
 
