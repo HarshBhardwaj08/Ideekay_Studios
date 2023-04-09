@@ -16,5 +16,6 @@ public class Movement : MonoBehaviour
     void Update()
     {
         rg2d.velocity = new Vector2(speed * Input.GetAxis("Horizontal"), rg2d.velocity.y);
+        rg2d.velocity = new Vector2( rg2d.velocity.x, Input.GetAxis("Vertical")*speed);
     }
 }
